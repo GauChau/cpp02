@@ -6,7 +6,7 @@
 /*   By: gchauvot <gchauvot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:45:40 by gchauvot          #+#    #+#             */
-/*   Updated: 2025/02/06 16:49:13 by gchauvot         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:48:16 by gchauvot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,14 @@ Fixed & Fixed::operator=(const Fixed &assign)
 {
 	(void) assign;
 	return *this;
+}
+
+
+int Fixed::getRawBits( void ) const
+{
+
+}
+void Fixed::setRawBits( int const raw )
+{
+
 }

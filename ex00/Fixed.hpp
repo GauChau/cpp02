@@ -6,7 +6,7 @@
 /*   By: gchauvot <gchauvot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:45:44 by gchauvot          #+#    #+#             */
-/*   Updated: 2025/02/06 16:49:04 by gchauvot         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:15:16 by gchauvot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 
 class Fixed
 {
+
+	private:
+		int _fpoint;
+		static const int _fracbit = 8;
+
 	public:
 		// Constructors
 		Fixed();
@@ -35,8 +40,8 @@ class Fixed
 		// Operators
 		Fixed & operator=(const Fixed &assign);
 
-	private:
-
+		int getRawBits( void ) const;
+		void setRawBits( int const raw );
 };
 
 
