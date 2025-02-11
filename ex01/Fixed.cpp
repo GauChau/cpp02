@@ -6,7 +6,7 @@
 /*   By: gchauvot <gchauvot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:45:40 by gchauvot          #+#    #+#             */
-/*   Updated: 2025/02/11 12:12:37 by gchauvot         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:16:13 by gchauvot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,20 @@ Fixed::Fixed(const Fixed &copy)
 {
 	(void) copy;
 	this->_fpoint = copy._fpoint;
-	std::cout << "\e[0;33mCopy Constructor called of Fixed\e[0m" << std::endl;
+	std::cout << "\e[0;33mCopy Constructor called of Fixed\e[0m"<< std::endl;
+}
+
+Fixed::Fixed(const int val)
+{
+	std::cout << "\e[0;33mIn Constructor called of Fixed\e[0m"<< std::endl;
+	this->_fpoint = val * (1 << this->_fracbit);
+}
+
+
+Fixed::Fixed(const float val)
+{
+	std::cout << "\e[0;33mFloat Constructor called of Fixed\e[0m"<< std::endl;
+	this->_fpoint = val * (1 << this->_fracbit);
 }
 
 
@@ -38,18 +51,27 @@ Fixed::~Fixed()
 Fixed & Fixed::operator=(const Fixed &assign)
 {
 	std::cout << "Copy assignement operator called" << std::endl;
-	(void) assign;
 	this->_fpoint = assign._fpoint;
 	return *this;
 }
 
-
+//func
 int Fixed::getRawBits( void ) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_fpoint);
 }
+
 void Fixed::setRawBits( int const raw )
 {
 	this->_fpoint = raw;
+}
+
+float Fixed::toFloat(void) const
+{
+	return ((float)this->_fpoint / (1<<this->_fracbit));
+}
+int Fixed::toInt(void) const
+{
+	return ((int)this->_fpoint>> this->_fracbit);
 }
