@@ -6,7 +6,7 @@
 /*   By: gchauvot <gchauvot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:45:40 by gchauvot          #+#    #+#             */
-/*   Updated: 2025/02/13 12:47:51 by gchauvot         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:34:27 by gchauvot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,92 @@ Fixed & Fixed::operator=(const Fixed &assign)
 	this->_fpoint = assign._fpoint;
 	return *this;
 }
+bool  Fixed::operator<(const Fixed &assign)
+{
+	if (this->_fpoint < assign._fpoint)
+		return true;
+	else
+		return false;
+}
+
+bool  Fixed::operator>(const Fixed &assign)
+{
+	if (this->_fpoint > assign._fpoint)
+		return true;
+	else
+		return false;
+}
+bool  Fixed::operator<=(const Fixed &assign)
+{
+	if (this->_fpoint <= assign._fpoint)
+		return true;
+	else
+		return false;
+}
+bool  Fixed::operator>=(const Fixed &assign)
+{
+	if (this->_fpoint >= assign._fpoint)
+		return true;
+	else
+		return false;
+}
+bool  Fixed::operator==(const Fixed &assign)
+{
+	if (this->_fpoint == assign._fpoint)
+		return true;
+	else
+		return false;
+}
+bool  Fixed::operator!=(const Fixed &assign)
+{
+	if (this->_fpoint != assign._fpoint)
+		return true;
+	else
+		return false;
+}
+Fixed  Fixed::operator+(const Fixed &assign)
+{
+	return Fixed(this->toFloat() + assign.toFloat());
+}
+Fixed  Fixed::operator-(const Fixed &assign)
+{
+	return Fixed(this->toFloat() - assign.toFloat());
+}
+Fixed  Fixed::operator*(const Fixed &assign)
+{
+	return Fixed(this->toFloat() * assign.toFloat());
+}
+Fixed  Fixed::operator/(const Fixed &assign)
+{
+	return Fixed(this->toFloat() / assign.toFloat());
+}
+Fixed &Fixed::operator++()
+{
+	this->_fpoint++;
+	return *this;
+}
+Fixed Fixed::operator++(int)
+{
+	Fixed temp;
+
+	temp._fpoint = this->_fpoint;
+	this->_fpoint++;
+	return temp;
+}
+Fixed &Fixed::operator--()
+{
+	this->_fpoint--;
+	return *this;
+}
+Fixed Fixed::operator--(int)
+{
+	Fixed temp;
+
+	temp._fpoint = this->_fpoint;
+	this->_fpoint--;
+	return temp;
+}
+
 
 //func
 int Fixed::getRawBits( void ) const
@@ -74,4 +160,35 @@ float Fixed::toFloat(void) const
 int Fixed::toInt(void) const
 {
 	return ((int)this->_fpoint >> this->_fracbit);
+}
+
+
+Fixed &Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a < b)
+		return (a);
+	else
+		return b;
+}
+
+Fixed &Fixed::max( Fixed &a, Fixed &b)
+{
+	if (a > b)
+		return (a);
+	else
+		return b;
+}
+Fixed const &Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a._fpoint < b._fpoint)
+		return (a);
+	else
+		return b;
+}
+Fixed const &Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a._fpoint > b._fpoint)
+		return (a);
+	else
+		return b;
 }
